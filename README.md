@@ -259,20 +259,6 @@ The dashboard displays:
 
 ---
 
-## 📸 Dashboard Preview
-
-Add screenshots of:
-- Hardware setup
-- OLED display
-- Dashboard UI
-- Circuit diagram
-
-Example:
-
-```md
-![Dashboard](images/dashboard.png)
-```
-
 ---
 
 ## 📜 License

@@ -1,85 +1,78 @@
-# Smart Water Purifier System
+# 💧 Smart Water Purifier System
 
-A smart IoT-based water purification and monitoring system built using an Arduino, ESP8266, and FastAPI. The system monitors water quality in real time using TDS and turbidity sensors, automatically decides whether filtration is required, and publishes live sensor data to a web dashboard over WiFi.
+An IoT-based smart water purification and monitoring system built using Arduino, ESP8266, and FastAPI. The system continuously monitors water quality in real time using TDS and turbidity sensors, automatically decides whether filtration is required, and publishes live sensor data to a web dashboard over WiFi.
 
 ---
 
-## Features
+## ✨ Features
 
 - Real-time water quality monitoring
-- Automatic water filtration decision-making
+- Automatic filtration control
 - TDS and turbidity analysis
-- Water level detection using ultrasonic sensing
-- OLED display for live sensor readings
-- WiFi-based data transmission using ESP8266
-- FastAPI-powered web dashboard
-- CSV-based data logging
-- Live monitoring from any device on the local network
+- OLED live sensor display
+- WiFi-based data transmission
+- FastAPI-powered dashboard
+- CSV data logging
+- Remote monitoring on local network
 
 ---
 
-## System Architecture
+## 🏗️ System Architecture
 
 The project is divided into three main components:
 
-### 1. Arduino Controller (`ArduinoCode`)
-The main control unit responsible for:
-- Reading all sensor values
-- Driving motors
-- Displaying data on the OLED screen
-- Sending sensor data to the ESP8266 module
+### Arduino Controller (`ArduinoCode`)
+Handles:
+- Sensor readings
+- Motor control
+- OLED display output
+- Serial communication with ESP8266
 
-### 2. ESP8266 WiFi Module (`ESP8266Code`)
-Acts as a communication bridge between the Arduino and the web server by:
-- Connecting to WiFi
-- Receiving UART data from the Arduino
-- Sending HTTP POST requests to the FastAPI server
+### ESP8266 WiFi Module (`ESP8266Code`)
+Responsible for:
+- WiFi connectivity
+- Receiving UART data
+- Sending HTTP requests to the server
 
-### 3. Web Server & Dashboard (`WebServer`)
-A Python backend built using FastAPI that:
-- Receives incoming sensor data
-- Logs readings into a CSV file
-- Hosts a live monitoring dashboard
-- Provides downloadable sensor logs
-
----
-
-## Working Principle
-
-1. The Arduino continuously monitors the water level using the ultrasonic sensor.
-2. If the measured distance is less than `19 cm`, water is considered present.
-3. The system reads:
-   - TDS (Total Dissolved Solids)
-   - Turbidity
-4. Sensor values are displayed on the OLED screen.
-5. The Arduino sends the readings to the ESP8266 through serial communication.
-6. Based on the readings:
-   - If `TDS > 500 ppm`, a **Danger** alert is displayed.
-   - If `Turbidity > 75 NTU`, water is redirected through the filtration path using **Motor A**.
-   - If water quality is acceptable, water bypasses filtration using **Motor B**.
-7. The ESP8266 transmits the data to the FastAPI server over WiFi.
-8. The server logs the readings into `logs.csv`.
-9. The web dashboard displays real-time sensor data and recent readings.
+### Web Server & Dashboard (`WebServer`)
+Built using FastAPI to:
+- Receive sensor data
+- Log readings into CSV
+- Serve the monitoring dashboard
+- Provide downloadable logs
 
 ---
 
-## Hardware Requirements
+## ⚙️ Working Principle
 
-- Arduino Uno (or compatible board)
+1. The ultrasonic sensor checks the water level.
+2. If the measured distance is less than `19 cm`, water is detected.
+3. TDS and turbidity values are read and displayed on the OLED screen.
+4. The Arduino sends sensor data to the ESP8266 through serial communication.
+5. Based on the readings:
+   - If `TDS > 500 ppm`, a **Danger** alert is shown.
+   - If `Turbidity > 75 NTU`, water is sent through filtration using **Motor A**.
+   - Otherwise, water bypasses filtration using **Motor B**.
+6. The ESP8266 sends the data to the FastAPI server over WiFi.
+7. The server logs the readings and updates the dashboard in real time.
+
+---
+
+## 🔌 Hardware Requirements
+
+- Arduino Uno
 - ESP8266 NodeMCU
 - TDS Sensor
 - Turbidity Sensor
-- Ultrasonic Sensor (HC-SR04)
+- HC-SR04 Ultrasonic Sensor
 - OLED Display (128x32, I2C)
 - 2 × DC Motors
-- L298N Motor Driver Module
+- L298N Motor Driver
 - Breadboard and jumper wires
 
 ---
 
-## Pin Connections
-
-### Arduino Connections
+## 📍 Pin Connections
 
 | Component | Pin |
 |---|---|
@@ -98,84 +91,63 @@ A Python backend built using FastAPI that:
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 SmartWaterPurifier/
 │
 ├── ArduinoCode/
-│   └── ArduinoPart.ino
-│
 ├── ESP8266Code/
-│   └── ESP8266Side.ino
-│
 ├── WebServer/
-│   ├── main.py
-│   ├── logs.csv
-│   └── templates/
-│
 └── README.md
 ```
 
 ---
 
-## Software & Libraries
+## 🛠️ Software & Libraries
 
-### Arduino Libraries
-
+### Arduino
 - Adafruit_GFX
 - Adafruit_SSD1306
 - SoftwareSerial
 - Wire
 
-### ESP8266 Libraries
-
+### ESP8266
 - ESP8266WiFi
 - ESP8266HTTPClient
 - SoftwareSerial
 
-### Python Dependencies
-
+### Python
 - fastapi
 - uvicorn
 
 ---
 
-# Setup and Installation
+# 🚀 Setup and Installation
 
-## 1. Arduino Controller Setup
+## Arduino Setup
 
-1. Install the required Arduino libraries using the Library Manager:
-   - Adafruit GFX
-   - Adafruit SSD1306
-
-2. Connect the Arduino board to your computer.
-
-3. Open:
+1. Install the required Arduino libraries.
+2. Open:
 
 ```text
 ArduinoCode/ArduinoPart/ArduinoPart.ino
 ```
 
-4. Select:
-   - Correct board
-   - Correct COM port
-
-5. Upload the code to the Arduino.
+3. Select the correct board and COM port.
+4. Upload the code to the Arduino.
 
 ---
 
-## 2. ESP8266 Setup
+## ESP8266 Setup
 
-1. Configure the Arduino IDE for ESP8266 development.
-
-2. Open:
+1. Open:
 
 ```text
 ESP8266Code/ESP8266Side/ESP8266Side.ino
 ```
 
-3. Update the WiFi credentials and server address:
+2. Update WiFi credentials and server IP:
 
 ```cpp
 const char* ssid = "YOUR_WIFI_SSID";
@@ -183,17 +155,13 @@ const char* password = "YOUR_WIFI_PASSWORD";
 const char* serverport = "http://SERVER_IP_ADDRESS:8000/data";
 ```
 
-4. Select:
-   - NodeMCU 1.0 (ESP-12E Module)
-   - Correct COM port
-
-5. Upload the code to the ESP8266.
+3. Select the correct board and upload the code.
 
 ---
 
-## 3. Web Server Setup
+## 🌐 Web Server Setup
 
-### Clone the Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/O-tech477/SmartWaterPurifier.git
@@ -206,7 +174,7 @@ cd SmartWaterPurifier/WebServer
 python -m venv .venv
 ```
 
-### Activate Virtual Environment
+### Activate Environment
 
 #### Linux/macOS
 
@@ -222,20 +190,18 @@ source .venv/bin/activate
 
 ### Install Dependencies
 
-Using `uv`:
-
 ```bash
 pip install uv
 uv sync
 ```
 
-Or using pip:
+Or:
 
 ```bash
 pip install fastapi uvicorn
 ```
 
-### Run the Server
+### Run Server
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000
@@ -243,34 +209,34 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
 
-## Accessing the Dashboard
+## 🌐 Dashboard Access
 
-Open a browser and navigate to:
+Open:
 
 ```text
 http://<your-server-ip>:8000
 ```
 
-The dashboard will display:
-- Live TDS readings
-- Turbidity values
-- Water level data
-- Recent sensor logs
+The dashboard displays:
+- Live TDS values
+- Turbidity readings
+- Water level status
+- Recent logs
 
 ---
 
-## API Endpoints
+## 🔗 API Endpoints
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/` | GET | Web dashboard |
+| `/` | GET | Dashboard |
 | `/data` | POST | Receive sensor data |
-| `/logs` | GET | Retrieve logged readings |
-| `/download` | GET | Download CSV log file |
+| `/logs` | GET | Fetch logs |
+| `/download` | GET | Download CSV logs |
 
 ---
 
-## Example JSON Payload
+## 📦 Example JSON Payload
 
 ```json
 {
@@ -282,26 +248,39 @@ The dashboard will display:
 
 ---
 
-## Future Improvements
+## 🔮 Future Improvements
 
-- MQTT-based communication
-- Mobile application integration
+- MQTT support
+- Mobile app integration
 - Cloud database storage
 - Email/SMS alerts
-- AI-based water quality prediction
-- Automatic motor speed control
+- AI-based water quality analysis
 - Battery backup support
 
 ---
 
+## 📸 Dashboard Preview
+
+Add screenshots of:
+- Hardware setup
+- OLED display
+- Dashboard UI
+- Circuit diagram
+
+Example:
+
+```md
+![Dashboard](images/dashboard.png)
+```
+
 ---
 
-## License
+## 📜 License
 
 This project is open-source and available under the MIT License.
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 Developed as an IoT-based Smart Water Purification and Monitoring System using Arduino, ESP8266, and FastAPI.

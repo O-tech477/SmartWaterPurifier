@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Smart Water Purifier</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1
+        style="
+          color: #1292f3;
+          text-shadow: 5px 1px 0px rgb(0, 0, 0);
+          font-size: 70px;
+        "
+      >
+        Smart Water Purifier
+      </h1>
+      <p class="subtitle">Live values from Smart Water Purifier</p>
+
+      <section id="values" class="cards"></section>
+      <section class="logs-section">
+        <h2>Recent Readings</h2>
+        <div class="logs-table-wrap">
+          <table id="logs-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>TDS</th>
+                <th>Turbidity</th>
+                <th>WaterLevel</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="buttons">
+          <a class="download-btn" href="/logs/download" download>Download CSV</a>
+          <a class="clear-logs-btn" href="#">Clear Logs</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #dedede;
+  color: #123;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.35) 1px, transparent 2px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 1px, transparent 2px);
+  background-size: 40px 40px;
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+}
+
+.logs-section {
+  margin-top: 32px;
+  text-align: left;
+}
+
+.logs-section h2 {
+  margin: 0 0 12px;
+  color: rgb(0, 0, 0);
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  background: #1292f3;
+  color: #000000;
+  padding: 8px 12px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 0px black;
+  margin: 10px;
+}
+
+.download-btn:hover {
+  background: #0b75c6;
+}
+
+.clear-logs-btn {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+  background: #1292f3;
+  color: #000000;
+  padding: 8px 12px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 0px black;
+  margin: 10px;
+}
+
+
+.logs-table-wrap {
+  max-height: 300px;
+  overflow: auto;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  background: rgb(203, 202, 202);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+table#logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+table#logs-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f6f6f6;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+table#logs-table td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+table#logs-table tbody tr.row-safe {
+  background: #7ee081;
+}
+
+table#logs-table tbody tr.row-warning {
+  background: #ffb347;
+}
+
+table#logs-table tbody tr.row-high {
+  background: #ff6b6b;
+}
+
+.card {
+  background: hsl(226, 100%, 64%);
+  border-radius: 5px;
+  padding: 18px;
+  box-shadow: 5px 5px 0px black;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #345;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}

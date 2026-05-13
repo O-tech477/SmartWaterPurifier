@@ -294,20 +294,6 @@ The dashboard will display:
 
 ---
 
-## Dashboard Preview
-
-> Add screenshots of:
-- Hardware setup
-- OLED display
-- Web dashboard
-- Circuit diagram
-
-Example:
-
-```md
-![Dashboard](images/dashboard.png)
-```
-
 ---
 
 ## License
